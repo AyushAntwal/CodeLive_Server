@@ -21,8 +21,6 @@ function getAllClients(roomID) {
   );
 }
 
-
-
 io.on("connection", (socket) => {
   console.log("socket Connected", socket.id); // Socket Id
   socket.on(ACTION.JOIN, ({ roomID, userName }) => {
@@ -60,9 +58,10 @@ io.on("connection", (socket) => {
   socket.leave();
 });
 
-app.get('/',(req,res)=>{
-  res.send('Server is running...');
-})
+app.get("*", (req, res) => {
+  res.send("Server is running...");
+  console.log(req.hostname + ":" + req.method + req.url);
+});
 
 const PORT = process.env.PORT || 2100;
 server.listen(PORT, () => console.log(`Listensing on port ${PORT}`));
