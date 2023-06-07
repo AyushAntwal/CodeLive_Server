@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const { Server } = require("socket.io");
+const socketIO = require("socket.io");
 const http = require("http");
 const { Socket } = require("socket.io-client");
 const ACTION = require("./Action");
 const server = http.createServer(app);
 
-const io = new Server(server);
+const io = socketIO(server);
 const userSocketMap = {};
 
 function getAllClients(roomID) {
