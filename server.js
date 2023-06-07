@@ -21,6 +21,8 @@ function getAllClients(roomID) {
   );
 }
 
+
+
 io.on("connection", (socket) => {
   console.log("socket Connected", socket.id); // Socket Id
   socket.on(ACTION.JOIN, ({ roomID, userName }) => {
@@ -58,7 +60,11 @@ io.on("connection", (socket) => {
   socket.leave();
 });
 
+app.get('/',(req,res)=>{
+  res.send('Server is running...');
+})
+
 const PORT = process.env.PORT || 2100;
 server.listen(PORT, () => console.log(`Listensing on port ${PORT}`));
 
-module.exports = server
+module.exports = server;
