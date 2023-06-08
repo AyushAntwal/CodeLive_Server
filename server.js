@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const fs = require("fs");
+const httpProxy = require("http-proxy");
 app.use(cors());
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
@@ -13,6 +14,19 @@ const http = require("http");
 const { Socket } = require("socket.io-client");
 const ACTION = require("./Action");
 const server = http.createServer(app);
+
+// ... Your server routes and logic ...
+
+// Load SSL certificate files
+const privateKey = fs.readFileSync("/path/to/private.key", "utf8");
+const certificate = fs.readFileSync("/path/to/certificate.crt", "utf8");
+const caBundle = fs.readFileSync("/path/to/ca_bundle.crt", "utf8"); // (if applicable)
+
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  ca: caBundle, // (if applicable)
+};
 
 const io = socketIO(server);
 server.prependListener("request", (req, res) => {
