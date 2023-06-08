@@ -19,7 +19,7 @@ const server = http.createServer(app);
 
 // Load SSL certificate files
 const privateKey = fs.readFileSync("./private.key", "utf8");
-const certificate = fs.readFileSync("./certificate.crt", "utf8");
+const certificate = fs.readFileSync("./certificate.csr", "utf8");
 // const caBundle = fs.readFileSync("/path/to/ca_bundle.crt", "utf8"); // (if applicable)
 
 const credentials = {
