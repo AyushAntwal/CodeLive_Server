@@ -77,4 +77,4 @@ app.get("*", (req, res) => {
 const PORT = process.env.PORT || 2100;
 server.listen(PORT, () => console.log(`Listensing on port ${PORT}`));
 
-module.exports = server;
+module.exports = app;
